@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: #e5e7eb;
+  color: #111;
+  font-family: var(--font-body);
+}
+
+@media print {
+  body { background: #fff; }
+  @page { size: A4; margin: 0; }
+}
