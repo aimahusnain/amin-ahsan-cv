@@ -2,7 +2,7 @@ export const profile = {
   name: "Amin Ahsan",
   title: "Finance & Accounting Professional",
   tagline: ["Driving Financial Discipline", "Ensuring Compliance", "Adding Business Value"],
-  photo: "/amin.jpg",
+  photo: "/profile_image.png",
   email: "ethanalan786@gmail.com",
   phone: "+92 (307) 4241757",
   address: "Street 1, Awami Villas 6, Phase 8, Bahria Town, Rawlapindi, Pakistan",

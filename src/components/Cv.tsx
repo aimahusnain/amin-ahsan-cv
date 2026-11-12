@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import {
   Award,
@@ -109,7 +110,7 @@ function Contact({ icon, children }: { icon: React.ReactNode; children: React.Re
   );
 }
 
-const Divider = () => <span aria-hidden className="hidden h-6 w-px bg-black md:block" />;
+const Divider = () => <span aria-hidden className="hidden h-6 w-px bg-black lg:block" />;
 
 export default function Cv() {
   return (
@@ -122,15 +123,15 @@ export default function Cv() {
 
       {/* ───────── Header ───────── */}
       <header className="relative">
-        <div className="flex flex-col items-center gap-6 px-5 pb-6 pt-8 sm:px-8 md:flex-row md:items-stretch md:gap-0 md:px-0 md:pb-5 md:pt-12">
+        <div className="flex flex-col items-start gap-5 px-5 pb-6 pt-6 sm:px-8 md:flex-row md:items-stretch md:gap-0 md:px-0 md:pb-5 md:pt-12">
           <div className="md:w-[290px] md:shrink-0 md:pl-8 md:pr-4">
-            <div className="relative aspect-square w-44 overflow-hidden bg-neutral-200 sm:w-52 md:w-full">
+            <div className="relative aspect-square w-28 overflow-hidden bg-neutral-200 sm:w-40 md:w-full">
               <Image
                 src={profile.photo}
                 alt={profile.name}
                 fill
                 priority
-                sizes="(min-width: 768px) 250px, 208px"
+                sizes="(min-width: 768px) 250px, 160px"
                 className="object-cover"
               />
             </div>
@@ -138,18 +139,29 @@ export default function Cv() {
 
           <div aria-hidden className="hidden w-px bg-neutral-800 md:block" />
 
-          <div className="w-full text-center md:flex-1 md:pl-9 md:pr-8 md:text-left">
-            <h1 className="font-[family-name:var(--font-heading)] text-5xl font-extrabold leading-none tracking-tight sm:text-6xl lg:text-[80px]">
+          <div className="w-full text-left md:flex-1 md:pl-9 md:pr-8">
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl font-extrabold min-[400px]:text-5xl leading-none tracking-tight sm:text-6xl lg:text-[80px]">
               {profile.name}
             </h1>
-            <p className="mt-3 font-[family-name:var(--font-heading)] text-base font-medium uppercase tracking-[0.18em] sm:text-xl lg:text-[26px]">
+            <p className="mt-3 font-[family-name:var(--font-heading)] text-sm font-medium uppercase tracking-[0.1em] min-[400px]:text-base sm:text-xl sm:tracking-[0.18em] lg:text-[26px]">
               {profile.title}
             </p>
             <p className="mt-2 border-b border-neutral-300 pb-3 text-sm text-neutral-600 sm:text-base lg:text-lg">
-              {profile.tagline.join(" • ")}
+              {profile.tagline.map((t, i) => (
+                <Fragment key={t}>
+                  <span className="whitespace-nowrap">
+                    {t}
+                    {i < profile.tagline.length - 1 && (
+                      <span aria-hidden className="mx-1.5">
+                        •
+                      </span>
+                    )}
+                  </span>{" "}
+                </Fragment>
+              ))}
             </p>
 
-            <ul className="mt-4 flex flex-col items-center gap-3 md:flex-row md:flex-wrap md:items-center md:gap-x-4 md:gap-y-3">
+            <ul className="mt-4 flex flex-col items-start gap-2.5 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-4 lg:gap-y-3">
               <Contact icon={<Mail size={22} />}>{profile.email}</Contact>
               <Divider />
               <Contact icon={<Phone size={20} fill="currentColor" />}>{profile.phone}</Contact>
@@ -158,9 +170,9 @@ export default function Cv() {
                 <span className="block max-w-[250px] leading-snug">{profile.address}</span>
               </Contact>
             </ul>
-            <ul className="mt-3 flex flex-col items-center gap-3 md:flex-row md:items-center md:gap-x-4">
+            <ul className="mt-2.5 flex flex-col items-start gap-2.5 lg:flex-row lg:items-center lg:gap-x-4">
               <Contact icon={<Link2 size={20} />}>
-                <a href={profile.link} className="hover:underline">
+                <a href={profile.link} className="break-all hover:underline">
                   {profile.link}
                 </a>
               </Contact>
@@ -175,9 +187,9 @@ export default function Cv() {
       {/* ───────── Body ───────── */}
       <div className="relative grid grid-cols-1 gap-8 px-5 pb-10 pt-6 sm:px-8 md:grid-cols-[35%_1fr] md:gap-0 md:px-0 md:pb-8">
         {/* Left column */}
-        <aside className="order-2 md:order-1 md:border-r md:border-neutral-800 md:pl-8 md:pr-5">
+        <aside className="order-2 border-t border-neutral-300 pt-6 md:order-1 md:border-t-0 md:pt-0 md:border-r md:border-neutral-800 md:pl-8 md:pr-5">
           <BarHeading>Core Strengths</BarHeading>
-          <ul className="mt-5 space-y-3.5">
+          <ul className="mt-5 grid gap-x-6 gap-y-3.5 sm:grid-cols-2 md:grid-cols-1">
             {skills.map(({ icon, label }) => {
               const Icon = icons[icon];
               return (
@@ -192,7 +204,7 @@ export default function Cv() {
           <hr className="my-6 border-t border-neutral-700" />
 
           <BarHeading>Qualifications</BarHeading>
-          <ul className="mt-4 space-y-4">
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-1">
             {qualifications.map((q) => (
               <li key={q.code} className="flex items-start gap-4">
                 <GraduationCap size={34} fill="currentColor" className="mt-0.5 shrink-0" />
@@ -222,12 +234,12 @@ export default function Cv() {
         <section className="order-1 md:order-2 md:pl-6 md:pr-8">
           {/* banner */}
           <div
-            className={`flex flex-col items-center gap-2 bg-black px-6 py-4 text-center text-white sm:flex-row sm:gap-6 sm:text-left ${slant}`}
+            className={`flex flex-col items-start gap-1 bg-black px-5 py-4 text-left text-white sm:flex-row sm:items-center sm:gap-6 sm:px-6 ${slant}`}
           >
             <p className="font-[family-name:var(--font-heading)] text-4xl font-bold leading-none sm:text-5xl lg:text-[56px]">
               {banner.big}
             </p>
-            <p className="max-w-[260px] text-base leading-snug sm:border-l sm:border-white/70 sm:pl-6 sm:text-lg lg:text-xl">
+            <p className="text-base leading-snug sm:max-w-[260px] sm:border-l sm:border-white/70 sm:pl-6 sm:text-lg lg:text-xl">
               {banner.small}
             </p>
           </div>
@@ -271,7 +283,7 @@ export default function Cv() {
                     </h3>
                     <p className="text-base italic">{job.role}</p>
                   </div>
-                  <p className="shrink-0 whitespace-nowrap text-sm sm:border-l sm:border-neutral-700 sm:pl-4 sm:text-base">
+                  <p className="shrink-0 whitespace-nowrap text-sm font-medium text-neutral-600 sm:border-l sm:border-neutral-700 sm:pl-4 sm:text-base sm:font-normal sm:text-black">
                     {job.period}
                   </p>
                 </div>
@@ -285,7 +297,7 @@ export default function Cv() {
                 </ul>
 
                 {job.achievement && (
-                  <p className="mt-3 flex items-center gap-3 bg-neutral-200 px-3 py-2 text-sm sm:text-[15px]">
+                  <p className="mt-3 flex items-start gap-3 bg-neutral-200 px-3 py-2 text-sm sm:text-[15px]">
                     <Trophy size={20} className="shrink-0" fill="currentColor" />
                     <span>
                       <strong className="font-semibold">Major Achievement:</strong>{" "}
@@ -304,18 +316,18 @@ export default function Cv() {
               <span aria-hidden className="mt-[6px] h-1.5 w-1.5 shrink-0 bg-black" />
               <span>{additional.text}</span>
             </p>
-            <p className="shrink-0 whitespace-nowrap pl-[18px] text-sm sm:border-l sm:border-neutral-700 sm:pl-4">
+            <p className="shrink-0 whitespace-nowrap pl-[18px] text-sm text-neutral-600 sm:text-black sm:border-l sm:border-neutral-700 sm:pl-4">
               {additional.period}
             </p>
           </div>
 
           {/* key skills */}
           <BarHeading className="mt-7">Key Skills</BarHeading>
-          <ul className="mt-3 flex flex-wrap items-center justify-center gap-y-2 text-sm sm:text-base md:justify-start">
+          <ul className="mt-3 flex flex-wrap gap-2 text-sm sm:text-base md:items-center md:gap-0">
             {keySkills.map((k, i) => (
               <li
                 key={k}
-                className={`px-3 ${i > 0 ? "border-l border-neutral-700" : "md:pl-0"}`}
+                className={`rounded-sm bg-white px-3 py-1 shadow-[inset_0_0_0_1px_#a3a3a3] md:rounded-none md:bg-transparent md:py-0 md:shadow-none ${i > 0 ? "md:border-l md:border-neutral-700" : "md:pl-0"}`}
               >
                 {k}
               </li>
