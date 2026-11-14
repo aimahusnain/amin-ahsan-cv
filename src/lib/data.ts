@@ -6,7 +6,6 @@ export const profile = {
   email: "ethanalan786@gmail.com",
   phone: "+92 (307) 4241757",
   address: "Street 1, Awami Villas 6, Phase 8, Bahria Town, Rawalpindi, Pakistan",
-  link: "https://bit.ly/2HbhcAs",
   linkedin: "https://www.linkedin.com/in/amin-ahsan-b10a7822/",
   dob: "July 25, 1982",
 };

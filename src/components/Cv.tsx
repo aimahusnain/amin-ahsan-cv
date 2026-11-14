@@ -9,7 +9,6 @@ import {
   FileText,
   GraduationCap,
   Languages,
-  Link2,
   Mail,
   MapPin,
   MessagesSquare,
@@ -201,12 +200,6 @@ export default function Cv() {
               </Contact>
             </ul>
             <ul className="mt-2.5 flex flex-col items-start gap-2.5 lg:flex-row lg:items-center lg:gap-x-4">
-              <Contact icon={<Link2 size={20} />}>
-                <a href={profile.link} target="_blank" rel="noopener noreferrer" className="break-all text-blue-600 hover:underline">
-                  {profile.link}
-                </a>
-              </Contact>
-              <Divider />
               <Contact icon={<LinkedInIcon />}>
                 <a
                   href={profile.linkedin}
