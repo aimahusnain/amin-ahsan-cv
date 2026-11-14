@@ -169,24 +169,43 @@ export default function Cv() {
             </p>
 
             <ul className="mt-4 flex flex-col items-start gap-2.5 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-4 lg:gap-y-3">
-              <Contact icon={<Mail size={22} />}>{profile.email}</Contact>
+              <Contact icon={<Mail size={22} />}>
+                <a href={`mailto:${profile.email}`} className="break-all text-blue-600 hover:underline">
+                  {profile.email}
+                </a>
+              </Contact>
               <Divider />
-              <Contact icon={<Phone size={20} fill="currentColor" />}>{profile.phone}</Contact>
+              <Contact icon={<Phone size={20} fill="currentColor" />}>
+                <a href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`} className="text-blue-600 hover:underline">
+                  {profile.phone}
+                </a>
+              </Contact>
               <Divider />
               <Contact icon={<MapPin size={22} fill="currentColor" className="[&>circle]:fill-white" />}>
-                <span className="block max-w-[250px] leading-snug">{profile.address}</span>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(profile.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block max-w-[250px] leading-snug text-blue-600 hover:underline"
+                >
+                  {profile.address}
+                </a>
               </Contact>
             </ul>
             <ul className="mt-2.5 flex flex-col items-start gap-2.5 lg:flex-row lg:items-center lg:gap-x-4">
               <Contact icon={<Link2 size={20} />}>
-                <a href={profile.link} className="break-all hover:underline">
+                <a href={profile.link} target="_blank" rel="noopener noreferrer" className="break-all text-blue-600 hover:underline">
                   {profile.link}
                 </a>
               </Contact>
               <Divider />
-              <Contact icon={<CalendarDays size={20} />}>{profile.dob}</Contact>
+              <Contact icon={<CalendarDays size={20} />}>DOB: {profile.dob}</Contact>
               <Divider />
-              <Contact icon={<Mail size={20} />}>{profile.email2}</Contact>
+              <Contact icon={<Mail size={20} />}>
+                <a href={`mailto:${profile.email2}`} className="break-all text-blue-600 hover:underline">
+                  {profile.email2}
+                </a>
+              </Contact>
             </ul>
           </div>
         </div>
@@ -251,6 +270,33 @@ export default function Cv() {
               </li>
             ))}
           </ul>
+
+          <BarHeading className="mt-6">Key Skills</BarHeading>
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {[...keySkills, ...moreSkills].map((k) => (
+              <li
+                key={k}
+                className="rounded-sm bg-white px-2 py-0.5 text-xs shadow-[inset_0_0_0_1px_#a3a3a3] sm:text-[13px]"
+              >
+                {k}
+              </li>
+            ))}
+          </ul>
+
+          <BarHeading className="mt-6">Recommendations</BarHeading>
+          <div className="mt-4 space-y-3">
+            {recommendations.map((r) => (
+              <figure key={r.name} className="border border-neutral-300 bg-white p-3">
+                <Quote size={18} fill="currentColor" className="mb-1.5" />
+                <blockquote className="text-sm italic leading-snug">{r.quote}</blockquote>
+                <figcaption className="mt-2 text-sm leading-snug">
+                  <strong className="font-semibold">{r.name}</strong>
+                  <span className="block text-neutral-600">{r.role}</span>
+                  <span className="block text-neutral-500">{r.context}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </aside>
 
         {/* Right column */}
@@ -370,44 +416,6 @@ export default function Cv() {
             </p>
           )}
 
-          {/* key skills */}
-          <BarHeading className="mt-7">Key Skills</BarHeading>
-          <ul className="mt-3 flex flex-wrap gap-2 text-sm sm:text-base md:items-center md:gap-0">
-            {keySkills.map((k, i) => (
-              <li
-                key={k}
-                className={`rounded-sm bg-white px-3 py-1 shadow-[inset_0_0_0_1px_#a3a3a3] md:rounded-none md:bg-transparent md:py-0 md:shadow-none ${i > 0 ? "md:border-l md:border-neutral-700" : "md:pl-0"}`}
-              >
-                {k}
-              </li>
-            ))}
-          </ul>
-
-          <details className="mt-4 rounded-sm border border-neutral-400 bg-white px-3 py-2">
-            <summary className="cursor-pointer text-sm font-semibold">More skills</summary>
-            <ul className="mt-3 flex flex-wrap gap-1.5">
-              {moreSkills.map((s) => (
-                <li key={s} className="rounded-sm bg-neutral-100 px-2 py-0.5 text-xs shadow-[inset_0_0_0_1px_#a3a3a3] sm:text-[13px]">
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </details>
-
-          <MarkHeading className="mt-8">Recommendations</MarkHeading>
-          <div className="mt-4 grid gap-3 lg:grid-cols-2">
-            {recommendations.map((r) => (
-              <figure key={r.name} className="border border-neutral-300 bg-white p-4">
-                <Quote size={20} fill="currentColor" className="mb-2" />
-                <blockquote className="text-[15px] italic leading-snug">{r.quote}</blockquote>
-                <figcaption className="mt-3 text-sm leading-snug">
-                  <strong className="font-semibold">{r.name}</strong>
-                  <span className="block text-neutral-600">{r.role}</span>
-                  <span className="block text-neutral-500">{r.context}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
         </section>
       </div>
     </main>

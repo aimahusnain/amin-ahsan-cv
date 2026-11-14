@@ -2,11 +2,11 @@ export const profile = {
   name: "Amin Ahsan",
   title: "Finance & Accounting Professional",
   tagline: ["Driving Financial Discipline", "Ensuring Compliance", "Adding Business Value"],
-  photo: "/amin.jpg",
-  email: "aminnjmi@gmail.com",
-  email2: "ethanalan786@gmail.com",
+  photo: "/amin.png",
+  email: "ethanalan786@gmail.com",
+  email2: "aminnjmi@gmail.com",
   phone: "+92 (307) 4241757",
-  address: "8-B, Farooq-e-Azam Road, Shamsabad, Rawalpindi, Pakistan",
+  address: "Street 1, Awami Villas 6, Phase 8, Bahria Town, Rawalpindi, Pakistan",
   link: "https://bit.ly/2HbhcAs",
   dob: "July 25, 1982",
 };
@@ -87,7 +87,7 @@ export const moreSkills = [
 export const languages = [
   { name: "English", level: "Full professional proficiency" },
   { name: "Hindi", level: "Full professional proficiency" },
-  { name: "Urdu", level: "" },
+  { name: "Urdu", level: "Full professional proficiency" },
 ];
 
 export const recommendations = [
