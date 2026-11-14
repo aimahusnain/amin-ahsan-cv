@@ -4,7 +4,6 @@ export const profile = {
   tagline: ["Driving Financial Discipline", "Ensuring Compliance", "Adding Business Value"],
   photo: "/amin.png",
   email: "ethanalan786@gmail.com",
-  email2: "aminnjmi@gmail.com",
   phone: "+92 (307) 4241757",
   address: "Street 1, Awami Villas 6, Phase 8, Bahria Town, Rawalpindi, Pakistan",
   link: "https://bit.ly/2HbhcAs",

@@ -200,12 +200,6 @@ export default function Cv() {
               </Contact>
               <Divider />
               <Contact icon={<CalendarDays size={20} />}>DOB: {profile.dob}</Contact>
-              <Divider />
-              <Contact icon={<Mail size={20} />}>
-                <a href={`mailto:${profile.email2}`} className="break-all text-blue-600 hover:underline">
-                  {profile.email2}
-                </a>
-              </Contact>
             </ul>
           </div>
         </div>
