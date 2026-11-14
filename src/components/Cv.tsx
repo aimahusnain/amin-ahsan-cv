@@ -8,11 +8,13 @@ import {
   Coins,
   FileText,
   GraduationCap,
+  Languages,
   Link2,
   Mail,
   MapPin,
   MessagesSquare,
   Phone,
+  Quote,
   ShieldCheck,
   Ship,
   Target,
@@ -24,16 +26,21 @@ import {
 } from "lucide-react";
 import {
   additional,
+  areasOfExpertise,
   banner,
   experience,
   expertise,
   keySkills,
+  languages,
   membership,
+  moreSkills,
   profile,
   qualifications,
+  recommendations,
   skills,
   summary,
   whyAmin,
+  careerOpportunity,
 } from "@/lib/data";
 
 const icons: Record<(typeof skills)[number]["icon"], LucideIcon> = {
@@ -178,6 +185,8 @@ export default function Cv() {
               </Contact>
               <Divider />
               <Contact icon={<CalendarDays size={20} />}>{profile.dob}</Contact>
+              <Divider />
+              <Contact icon={<Mail size={20} />}>{profile.email2}</Contact>
             </ul>
           </div>
         </div>
@@ -212,6 +221,7 @@ export default function Cv() {
                   <p className="font-[family-name:var(--font-heading)] text-lg font-bold leading-tight">
                     {q.code}
                   </p>
+                  {q.field && <p className="text-sm italic text-neutral-600">{q.field}</p>}
                   <p className="text-sm leading-snug">{q.detail}</p>
                 </div>
               </li>
@@ -228,6 +238,19 @@ export default function Cv() {
               <p className="text-sm leading-snug">{membership.org}</p>
             </div>
           </div>
+
+          <BarHeading className="mt-6">Languages</BarHeading>
+          <ul className="mt-4 space-y-2">
+            {languages.map((l) => (
+              <li key={l.name} className="flex items-start gap-4 text-[15px] leading-tight">
+                <Languages size={24} className="mt-0.5 shrink-0" />
+                <span>
+                  <strong className="font-semibold">{l.name}</strong>
+                  {l.level && <span className="block text-sm text-neutral-600">{l.level}</span>}
+                </span>
+              </li>
+            ))}
+          </ul>
         </aside>
 
         {/* Right column */}
@@ -266,6 +289,22 @@ export default function Cv() {
             ))}
           </ul>
 
+          <p className="mt-5 border-l-4 border-black bg-neutral-200 px-4 py-3 text-sm leading-snug sm:text-[15px]">
+            <strong className="font-semibold">Career opportunities:</strong> {careerOpportunity}
+          </p>
+
+          <h3 className="mt-6 font-[family-name:var(--font-heading)] text-base font-bold uppercase tracking-wider">
+            Core Areas of Expertise
+          </h3>
+          <dl className="mt-3 grid gap-3 sm:grid-cols-2">
+            {areasOfExpertise.map((a) => (
+              <div key={a.label} className="border-t-2 border-black pt-2">
+                <dt className="font-[family-name:var(--font-heading)] text-sm font-bold">{a.label}</dt>
+                <dd className="mt-0.5 text-sm leading-snug text-neutral-700">{a.text}</dd>
+              </div>
+            ))}
+          </dl>
+
           <hr className="my-6 border-t border-neutral-500" />
 
           {/* experience */}
@@ -282,6 +321,7 @@ export default function Cv() {
                       {job.company}
                     </h3>
                     <p className="text-base italic">{job.role}</p>
+                    {job.meta && <p className="text-sm text-neutral-600">{job.meta}</p>}
                   </div>
                   <p className="shrink-0 whitespace-nowrap text-sm font-medium text-neutral-600 sm:border-l sm:border-neutral-700 sm:pl-4 sm:text-base sm:font-normal sm:text-black">
                     {job.period}
@@ -321,6 +361,15 @@ export default function Cv() {
             </p>
           </div>
 
+          {additional.achievement && (
+            <p className="mt-3 flex items-start gap-3 bg-neutral-200 px-3 py-2 text-sm sm:text-[15px]">
+              <Trophy size={20} className="shrink-0" fill="currentColor" />
+              <span>
+                <strong className="font-semibold">Major Achievement:</strong> {additional.achievement}
+              </span>
+            </p>
+          )}
+
           {/* key skills */}
           <BarHeading className="mt-7">Key Skills</BarHeading>
           <ul className="mt-3 flex flex-wrap gap-2 text-sm sm:text-base md:items-center md:gap-0">
@@ -333,6 +382,32 @@ export default function Cv() {
               </li>
             ))}
           </ul>
+
+          <details className="mt-4 rounded-sm border border-neutral-400 bg-white px-3 py-2">
+            <summary className="cursor-pointer text-sm font-semibold">More skills</summary>
+            <ul className="mt-3 flex flex-wrap gap-1.5">
+              {moreSkills.map((s) => (
+                <li key={s} className="rounded-sm bg-neutral-100 px-2 py-0.5 text-xs shadow-[inset_0_0_0_1px_#a3a3a3] sm:text-[13px]">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </details>
+
+          <MarkHeading className="mt-8">Recommendations</MarkHeading>
+          <div className="mt-4 grid gap-3 lg:grid-cols-2">
+            {recommendations.map((r) => (
+              <figure key={r.name} className="border border-neutral-300 bg-white p-4">
+                <Quote size={20} fill="currentColor" className="mb-2" />
+                <blockquote className="text-[15px] italic leading-snug">{r.quote}</blockquote>
+                <figcaption className="mt-3 text-sm leading-snug">
+                  <strong className="font-semibold">{r.name}</strong>
+                  <span className="block text-neutral-600">{r.role}</span>
+                  <span className="block text-neutral-500">{r.context}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
       </div>
     </main>
