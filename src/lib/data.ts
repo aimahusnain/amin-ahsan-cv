@@ -7,11 +7,12 @@ export const profile = {
   phone: "+92 (307) 4241757",
   address: "Street 1, Awami Villas 6, Phase 8, Bahria Town, Rawalpindi, Pakistan",
   link: "https://bit.ly/2HbhcAs",
+  linkedin: "https://www.linkedin.com/in/amin-ahsan-b10a7822/",
   dob: "July 25, 1982",
 };
 
 export const banner = {
-  big: "8+ Years",
+  big: "16+ Years",
   small: "of Expertise in Accounting & Financial Management",
 };
 
